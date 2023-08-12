@@ -1,0 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
+
+namespace SoccerDiv
+{
+	public class RouteConfig
+	{
+		public static void RegisterRoutes(RouteCollection routes)
+		{
+			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+			// Register the custom route for PurchaseTicketForm
+			routes.MapRoute(
+	name: "PurchaseTicketForm",
+	url: "Events/PurchaseTicketForm/{Event_ID}",
+	defaults: new { controller = "Events", action = "PurchaseTicketForm" }
+);
+
+
+			// Default route
+			routes.MapRoute(
+				name: "Default",
+				url: "{controller}/{action}/{id}",
+				defaults: new { controller = "Admins", action = "Login", id = UrlParameter.Optional }
+			);
+		}
+	}
+}

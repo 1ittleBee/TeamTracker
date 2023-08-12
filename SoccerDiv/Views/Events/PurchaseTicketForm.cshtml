@@ -1,0 +1,47 @@
+﻿@model SoccerDiv.Models.PurchaseViewModel
+
+@{
+    ViewBag.Title = "Purchase Ticket";
+}
+
+<h2>Purchase Ticket for @ViewBag.Event.Team.Team_Name vs @ViewBag.Event.Team1.Team_Name</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+  
+
+    <div class="form-group">
+        @Html.Label("Select Event:", new { @class = "control-label" })
+        @Html.DropDownListFor(model => model.SelectedEventId, new SelectList(ViewBag.EventsInTournament, "Event_ID", "Event_Details"), "Select an event", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.SelectedEventId)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CustomerName, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.CustomerName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.CustomerName)
+    </div>
+
+    <!-- Add more input fields for customer information, such as email, phone, etc. -->
+    <!-- Example: -->
+    <div class="form-group">
+        @Html.LabelFor(model => model.Email, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+
+    <!-- Add more input fields as needed -->
+    <div class="form-group">
+        @Html.LabelFor(model => model.TicketPrice, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.TicketPrice, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.TicketPrice)
+    </div>
+
+
+    <div class="form-group">
+        <input type="submit" value="Purchase" class="btn btn-primary" />
+    </div>
+ 
+
+}
